@@ -1,5 +1,7 @@
 #include<iostream>
-
+#include<chrono>
+#include<ctime>
+#include<cstdlib>
 using namespace std;
 
 void merge(int* arr, int left,int mi,int right){
@@ -55,12 +57,22 @@ int main(){
     cin>>n;
     int arr[100000];
     for(int i=0;i<n;i++){
-        cin>>arr[i];
+        arr[i] = rand() % 10000;
     }
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+  
+    start = std::chrono::system_clock::now();
     recur(arr,0,n-1);
+    end = std::chrono::system_clock::now();
+  
+    std::chrono::duration<double> elapsed_seconds = end - start;
+   
     cout<<'\n';
     for(int i=0;i<n;i++){
-        cout<<arr[i]<<' ';
+      cout<<arr[i]<<' ';
     }
+    cout<<'\n';
+    cout<<"time: "<<elapsed_seconds.count()<<"time end";
+
 
 }
